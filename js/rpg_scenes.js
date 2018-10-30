@@ -282,22 +282,14 @@ Scene_Title.prototype.createBackground = function() {
 };
 
 Scene_Title.prototype.createForeground = function() {
-    this._gameTitleSprite = new Sprite(new Bitmap(Graphics.width, Graphics.height));
-    this.addChild(this._gameTitleSprite);
     if ($dataSystem.optDrawTitle) {
-        this.drawGameTitle();
+        var gameLogo = ImageManager.loadBitmap("img/titles1/", "Lonely Island");
+        this._gameTitleSprite = new Sprite(gameLogo);
+        this._gameTitleSprite.anchor = new Point(0.5, 0);
+        this._gameTitleSprite.x = Graphics.width / 2;
+        this._gameTitleSprite.y = Graphics.height / 4;
+        this.addChild(this._gameTitleSprite);
     }
-};
-
-Scene_Title.prototype.drawGameTitle = function() {
-    var x = 20;
-    var y = Graphics.height / 4;
-    var maxWidth = Graphics.width - x * 2;
-    var text = $dataSystem.gameTitle;
-    this._gameTitleSprite.bitmap.outlineColor = 'black';
-    this._gameTitleSprite.bitmap.outlineWidth = 8;
-    this._gameTitleSprite.bitmap.fontSize = 72;
-    this._gameTitleSprite.bitmap.drawText(text, x, y, maxWidth, 48, 'center');
 };
 
 Scene_Title.prototype.centerSprite = function(sprite) {
